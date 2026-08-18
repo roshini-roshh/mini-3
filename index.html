@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Property Rental - Owner Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            🏠 RentEase
+        </div>
+
+        <div class="owner-profile">
+            <div class="profile-circle">R</div>
+
+            <div>
+                <h3>Roshini</h3>
+                <p>Property Owner</p>
+            </div>
+        </div>
+
+        <nav>
+            <button class="nav-item active" onclick="showSection('dashboard', this)">
+                <span>📊</span> Dashboard
+            </button>
+
+            <button class="nav-item" onclick="showSection('properties', this)">
+                <span>🏠</span> My Properties
+            </button>
+
+            <button class="nav-item" onclick="showSection('bookings', this)">
+                <span>📩</span> Booking Requests
+                <span class="notification">2</span>
+            </button>
+
+            <button class="nav-item">
+                <span>💰</span> Payments
+            </button>
+
+            <button class="nav-item">
+                <span>⭐</span> Reviews
+            </button>
+
+            <button class="nav-item">
+                <span>👤</span> Profile
+            </button>
+        </nav>
+
+        <button class="logout">
+            🚪 Logout
+        </button>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div>
+                <h1 id="pageTitle">Dashboard</h1>
+                <p>Welcome back, Roshini 👋</p>
+            </div>
+
+            <div class="top-actions">
+                <button class="icon-button">🔔</button>
+
+                <div class="user-mini">
+                    <div class="small-circle">R</div>
+                    <span>Roshini</span>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="section active-section">
+
+            <div class="welcome-card">
+
+                <div>
+                    <h2>Good evening, Roshini!</h2>
+
+                    <p>
+                        Manage your properties and booking requests
+                        from one place.
+                    </p>
+                </div>
+
+                <button onclick="showSectionById('properties')">
+                    + Add Property
+                </button>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">🏠</div>
+
+                    <div>
+                        <p>Total Properties</p>
+                        <h2>6</h2>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon green">✓</div>
+
+                    <div>
+                        <p>Available</p>
+                        <h2>4</h2>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">📩</div>
+
+                    <div>
+                        <p>Booking Requests</p>
+                        <h2>2</h2>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">💰</div>
+
+                    <div>
+                        <p>Monthly Income</p>
+                        <h2>₹42,000</h2>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- QUICK OVERVIEW -->
+
+            <div class="dashboard-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <h2>Recent Properties</h2>
+
+                        <button onclick="showSectionById('properties')">
+                            View All
+                        </button>
+                    </div>
+
+                    <div class="mini-property">
+
+                        <div class="mini-image">🏠</div>
+
+                        <div>
+                            <h3>2 BHK Apartment</h3>
+                            <p>Madurai • ₹15,000/month</p>
+                        </div>
+
+                        <span class="available">Available</span>
+
+                    </div>
+
+
+                    <div class="mini-property">
+
+                        <div class="mini-image">🏡</div>
+
+                        <div>
+                            <h3>1 BHK House</h3>
+                            <p>Chennai • ₹12,000/month</p>
+                        </div>
+
+                        <span class="booked">Booked</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <h2>Booking Requests</h2>
+
+                        <button onclick="showSectionById('bookings')">
+                            View All
+                        </button>
+                    </div>
+
+
+                    <div class="booking-mini">
+
+                        <div class="tenant-avatar">A</div>
+
+                        <div>
+                            <h3>Arjun Kumar</h3>
+                            <p>2 BHK Apartment</p>
+                        </div>
+
+                        <span class="pending">Pending</span>
+
+                    </div>
+
+
+                    <div class="booking-mini">
+
+                        <div class="tenant-avatar">P</div>
+
+                        <div>
+                            <h3>Priya S</h3>
+                            <p>1 BHK House</p>
+                        </div>
+
+                        <span class="pending">Pending</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MY PROPERTIES -->
+
+        <section id="properties" class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>My Properties</h2>
+                    <p>Manage your rental properties</p>
+                </div>
+
+                <button class="primary-button" onclick="openPropertyModal()">
+                    + Add Property
+                </button>
+
+            </div>
+
+
+            <!-- FILTERS -->
+
+            <div class="filter-bar">
+
+                <input
+                    type="text"
+                    id="propertySearch"
+                    placeholder="🔍 Search properties..."
+                    onkeyup="searchProperties()"
+                >
+
+                <select id="propertyFilter" onchange="filterProperties()">
+
+                    <option value="all">All Properties</option>
+                    <option value="available">Available</option>
+                    <option value="booked">Booked</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- PROPERTY CARDS -->
+
+            <div class="property-grid" id="propertyGrid">
+
+
+                <!-- PROPERTY 1 -->
+
+                <div class="property-card" data-status="available">
+
+                    <div class="property-image house-one">
+
+                        <span class="property-status available">
+                            Available
+                        </span>
+
+                    </div>
+
+                    <div class="property-content">
+
+                        <h3>2 BHK Apartment</h3>
+
+                        <p class="location">
+                            📍 Madurai, Tamil Nadu
+                        </p>
+
+                        <div class="property-info">
+
+                            <span>🛏 2 Beds</span>
+                            <span>🚿 2 Baths</span>
+
+                        </div>
+
+                        <div class="property-bottom">
+
+                            <strong>₹15,000<span>/month</span></strong>
+
+                            <button
+                                class="edit-button"
+                                onclick="editProperty('2 BHK Apartment')"
+                            >
+                                Edit
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROPERTY 2 -->
+
+                <div class="property-card" data-status="booked">
+
+                    <div class="property-image house-two">
+
+                        <span class="property-status booked">
+                            Booked
+                        </span>
+
+                    </div>
+
+                    <div class="property-content">
+
+                        <h3>1 BHK House</h3>
+
+                        <p class="location">
+                            📍 Chennai, Tamil Nadu
+                        </p>
+
+                        <div class="property-info">
+
+                            <span>🛏 1 Bed</span>
+                            <span>🚿 1 Bath</span>
+
+                        </div>
+
+                        <div class="property-bottom">
+
+                            <strong>₹12,000<span>/month</span></strong>
+
+                            <button
+                                class="edit-button"
+                                onclick="editProperty('1 BHK House')"
+                            >
+                                Edit
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROPERTY 3 -->
+
+                <div class="property-card" data-status="available">
+
+                    <div class="property-image house-three">
+
+                        <span class="property-status available">
+                            Available
+                        </span>
+
+                    </div>
+
+                    <div class="property-content">
+
+                        <h3>3 BHK Villa</h3>
+
+                        <p class="location">
+                            📍 Trichy, Tamil Nadu
+                        </p>
+
+                        <div class="property-info">
+
+                            <span>🛏 3 Beds</span>
+                            <span>🚿 3 Baths</span>
+
+                        </div>
+
+                        <div class="property-bottom">
+
+                            <strong>₹18,000<span>/month</span></strong>
+
+                            <button
+                                class="edit-button"
+                                onclick="editProperty('3 BHK Villa')"
+                            >
+                                Edit
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BOOKING REQUESTS -->
+
+        <section id="bookings" class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Booking Requests</h2>
+                    <p>Review and manage tenant requests</p>
+                </div>
+
+                <div class="booking-count">
+                    2 Pending Requests
+                </div>
+
+            </div>
+
+
+            <!-- BOOKING REQUEST 1 -->
+
+            <div class="booking-card" id="booking1">
+
+                <div class="tenant-section">
+
+                    <div class="large-avatar">
+                        A
+                    </div>
+
+                    <div>
+                        <h2>Arjun Kumar</h2>
+
+                        <p>
+                            📧 arjun@email.com
+                        </p>
+
+                        <p>
+                            📞 +91 98765 43210
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="booking-property">
+
+                    <div class="booking-house-image">
+                        🏠
+                    </div>
+
+                    <div>
+
+                        <h3>2 BHK Apartment</h3>
+
+                        <p>📍 Madurai, Tamil Nadu</p>
+
+                        <p>🛏 2 Bedrooms • 🚿 2 Bathrooms</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="booking-details">
+
+                    <div>
+                        <span>Monthly Rent</span>
+                        <strong>₹15,000</strong>
+                    </div>
+
+                    <div>
+                        <span>Move-in Date</span>
+                        <strong>01 Sep 2026</strong>
+                    </div>
+
+                    <div>
+                        <span>Request Date</span>
+                        <strong>18 Aug 2026</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="booking-actions">
+
+                    <button
+                        class="accept-button"
+                        onclick="acceptBooking('booking1')"
+                    >
+                        ✓ Accept Request
+                    </button>
+
+                    <button
+                        class="reject-button"
+                        onclick="rejectBooking('booking1')"
+                    >
+                        ✕ Reject
+                    </button>
+
+                    <button class="view-button">
+                        View Details
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOOKING REQUEST 2 -->
+
+            <div class="booking-card" id="booking2">
+
+                <div class="tenant-section">
+
+                    <div class="large-avatar avatar-purple">
+                        P
+                    </div>
+
+                    <div>
+
+                        <h2>Priya S</h2>
+
+                        <p>
+                            📧 priya@email.com
+                        </p>
+
+                        <p>
+                            📞 +91 91234 56789
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="booking-property">
+
+                    <div class="booking-house-image">
+                        🏡
+                    </div>
+
+                    <div>
+
+                        <h3>1 BHK House</h3>
+
+                        <p>📍 Chennai, Tamil Nadu</p>
+
+                        <p>🛏 1 Bedroom • 🚿 1 Bathroom</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="booking-details">
+
+                    <div>
+                        <span>Monthly Rent</span>
+                        <strong>₹12,000</strong>
+                    </div>
+
+                    <div>
+                        <span>Move-in Date</span>
+                        <strong>05 Sep 2026</strong>
+                    </div>
+
+                    <div>
+                        <span>Request Date</span>
+                        <strong>17 Aug 2026</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="booking-actions">
+
+                    <button
+                        class="accept-button"
+                        onclick="acceptBooking('booking2')"
+                    >
+                        ✓ Accept Request
+                    </button>
+
+                    <button
+                        class="reject-button"
+                        onclick="rejectBooking('booking2')"
+                    >
+                        ✕ Reject
+                    </button>
+
+                    <button class="view-button">
+                        View Details
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ADD PROPERTY MODAL -->
+
+    <div class="modal-overlay" id="propertyModal">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2>Add New Property</h2>
+                    <p>Enter your property details</p>
+                </div>
+
+                <button onclick="closePropertyModal()">×</button>
+
+            </div>
+
+
+            <form onsubmit="addProperty(event)">
+
+                <div class="form-group">
+
+                    <label>Property Title</label>
+
+                    <input
+                        type="text"
+                        id="propertyTitle"
+                        placeholder="Example: 2 BHK Apartment"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Property Type</label>
+
+                        <select required>
+
+                            <option value="">Select type</option>
+                            <option>Apartment</option>
+                            <option>House</option>
+                            <option>Villa</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Monthly Rent</label>
+
+                        <input
+                            type="number"
+                            placeholder="15000"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Location</label>
+
+                        <input
+                            type="text"
+                            placeholder="Madurai"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Bedrooms</label>
+
+                        <input
+                            type="number"
+                            min="1"
+                            placeholder="2"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Description</label>
+
+                    <textarea
+                        placeholder="Describe your property..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Property Image</label>
+
+                    <div class="upload-box">
+
+                        📷
+
+                        <span>
+                            Click to upload property image
+                        </span>
+
+                        <input type="file">
+
+                    </div>
+
+                </div>
+
+
+                <div class="ai-check">
+
+                    <div>
+                        <strong>🤖 AI Scam Detection</strong>
+
+                        <p>
+                            Your property will be checked for
+                            suspicious listing patterns.
+                        </p>
+                    </div>
+
+                    <span>Enabled</span>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-button"
+                        onclick="closePropertyModal()"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Add Property
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
